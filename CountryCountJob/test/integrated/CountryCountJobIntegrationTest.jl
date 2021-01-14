@@ -17,7 +17,7 @@ Arrow.write(tmp_input_arrow_file, df)
 
 @testset "Count Countries" begin
     main(tmp_input_arrow_file, tmp_output_arrow_file, 20)
-    expected_df = DataFrame(net_worth = repeat(1:2, 3), multiplied_net_worth = repeat([10,20], 3))
+    expected_df = DataFrame(countries = ["australia", "japan", "china", "fiji"], count = [2,1,2,1])
     @test read_arrow_file(tmp_output_arrow_file) == expected_df
 end
     
