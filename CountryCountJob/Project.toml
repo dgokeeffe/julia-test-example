@@ -1,0 +1,12 @@
+name = "CountryCountJob"
+uuid = "729d5a78-a2e9-4901-9414-93a85a968ccd"
+authors = ["David O'Keeffe <david.okeeffe@servian.com>"]
+version = "0.1.0"
+
+[deps]
+Arrow = "69666777-d1a9-59fb-9406-91d4454c9d45"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+Jive = "ba5e3d4b-8524-549f-bc71-e76ad9e9deed"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
