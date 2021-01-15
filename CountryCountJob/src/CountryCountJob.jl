@@ -2,13 +2,20 @@ module CountryCountJob
 using DataFrames
 using Arrow
 using Statistics
+using Dates
 
-export main, count_countries, multiply_net_worth, read_arrow_file
+export main, count_countries, parse_filename_datetime, read_arrow_file
 
 function read_arrow_file(filename::String)
     return DataFrame(Arrow.Table(filename))
 end
 
+function parse_filename_datetime(filename::String)
+    file_datetime_regex = r"([12]\d{3}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])_(?:[0-6]{6}))"
+    m = match(file_datetime_regex, filename)
+    file_datetime = m.match
+    return DateTime("yyyymmdd_HHMMSS", file_datetime)
+end
 
 function write_arrow_file(df::DataFrame, filename::String)
     Arrow.write(filename, df)

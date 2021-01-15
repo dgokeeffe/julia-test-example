@@ -4,11 +4,12 @@ using CountryCountJob
 using Test
 using DataFrames
 using Random
+using Dates
 
-@testset "Multiply Net Worth" begin
-    input_df = DataFrame(net_worth = repeat(1:2, 3))
-    output_df = DataFrame(net_worth = repeat(1:2, 3), multiplied_net_worth = repeat([10,20], 3))
-    @test multiply_net_worth(input_df, 10) == output_df
+
+@testset "Parse Filename Datetime" begin
+    test_filename = "20210115_140011_new_investors.arrow"
+    @test parse_filename_datetime(test_filename) == DateTime(2021, 01, 15, 14, 00, 11) 
 end
 
 @testset "Count Countries" begin
