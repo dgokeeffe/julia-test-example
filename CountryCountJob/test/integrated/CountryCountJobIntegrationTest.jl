@@ -22,7 +22,7 @@ using Dates
         ]
     )
     tmp_input_arrow_file = joinpath(pwd(), "20210115_150051_tmp_input_dataframe.arrow")
-    tmp_output_arrow_file = joinpath(pwd(), "tmp_output_dataframe.arrow")
+    tmp_output_arrow_file = joinpath(pwd(), "historical_country_counts.arrow")
     Arrow.write(tmp_input_arrow_file, input_df)
     Arrow.write(tmp_output_arrow_file, history_df)
 
@@ -36,7 +36,9 @@ using Dates
             DateTime(2021, 01, 15, 15, 00, 51),
             DateTime(2021, 01, 15, 15, 00, 51),
         ])
-    @test read_arrow_file("new" * tmp_output_arrow_file) == expected_df
+    @test read_arrow_file(tmp_output_arrow_file) == expected_df
+    rm(tmp_input_arrow_file)
+    rm(tmp_output_arrow_file)
 end
     
 end

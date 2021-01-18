@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  julia-data-testing:
+    image: julia:latest 
+    volumes:
+      - ./CountryCountJob:/home/julia/CountryCountJob
+    working_dir: /home/julia/CountryCountJob
+    command: julia --color=yes --check-bounds=yes --inline=yes --depwarn=yes --project=@. -e 'using Pkg; Pkg.test(coverage=true)'

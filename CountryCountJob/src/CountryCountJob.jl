@@ -12,6 +12,7 @@ end
 
 
 function write_arrow_file(df::DataFrame, filename::String)
+    show(df)
     Arrow.write(filename, df)
 end
 
@@ -35,14 +36,21 @@ end
 
 
 function main(input_filename::String, output_filename::String)
-    df = read_arrow_file(input_filename)
+    new_investrs_df = read_arrow_file(input_filename)
     investor_country_count_hist_df = read_arrow_file(output_filename)
+    @info "Our Input DataFrame \n"
+    show(new_investrs_df)
+    @info "Our Historical DataFrame \n"
+    show(investor_country_count_hist_df)
     start_datetime = parse_filename_datetime(input_filename)
-    new_investor_count_countries_df = count_countries(df)
+    new_investor_count_countries_df = count_countries(new_investrs_df)
     add_start_datetime_column(new_investor_count_countries_df, start_datetime)
+    @info "Country Count DataFrame \n"
+    show(new_investor_count_countries_df)
+    @info "New investor dataframe appended to the historical dataframe \n"
     write_arrow_file(
         vcat(investor_country_count_hist_df, new_investor_count_countries_df),
-        "new" * output_filename 
+        output_filename 
     )
 end
 
