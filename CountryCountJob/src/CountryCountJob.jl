@@ -1,7 +1,6 @@
 module CountryCountJob 
 using DataFrames
 using Arrow
-using Statistics
 using Dates
 
 export main, count_countries, parse_filename_datetime, add_start_datetime_column, read_arrow_file

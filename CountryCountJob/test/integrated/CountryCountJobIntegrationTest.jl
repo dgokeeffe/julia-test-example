@@ -4,7 +4,6 @@ using CountryCountJob
 using Test
 using Arrow
 using DataFrames
-using Random
 using Dates
 
 @testset "Test Entire Country Count Job" begin
